@@ -1,43 +1,77 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import ReactCardFlip from 'react-card-flip'
 
-import Card from 'react-bootstrap/Card'
-import { Stack } from 'react-bootstrap'
+import './card.css'
+import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-const CardModal = ({ data, handleClick }) => {
+const CardModal = ({ data, isFlipped, handleClick, handleCardFlip }) => {
+    const [selectedOptionId, setSelectedOptionId] = useState(0)
+
+    const handleChange = (e) => {
+        setSelectedOptionId(Number(e.target.value))
+    }
+
+    useEffect(() => {
+        document.querySelector(".btn-flip").addEventListener("click", () => {
+            if(data.answer_id === selectedOptionId) {
+                document.querySelector(".card-flip").classList.add("card-correct-answer")
+                document.querySelector(".card-flip").classList.remove("card-wrong-answer")
+            } else {
+                document.querySelector(".card-flip").classList.add("card-wrong-answer")
+                document.querySelector(".card-flip").classList.remove("card-correct-answer")    
+            }
+        })
+    }, [selectedOptionId, data.answer_id])
+    
     return (
-        <Card border="dark" className='card-modal-container'>
-            <div className='card-modal-front'>
-                <Card.Header>{data.subject}</Card.Header>
-                <Card.Body>
-                    <Card.Title>Q.{data.index}</Card.Title>
-                    <Card.Text>{data.about}</Card.Text>
-                </Card.Body>
-                <Card.Body>
-                    <Form>
-                        { data.options.map((options) => 
-                            <Form.Check
-                                key={`${options.id}`}
-                                type='radio'
-                                label={`${options.text}`}
-                                id={`${options.id}`}
-                                name='options'
-                            />
-                        )}
-                    </Form>
-                </Card.Body>
-                <Card.Footer>
-                    <Stack gap={2}>
-                        <Button className='w-100' variant="primary" onClick={ handleClick }>Submit</Button>
-                        {/* <Button className='w-100' variant="primary">Skip</Button> */}
-                    </Stack>
-                </Card.Footer>
+        <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+            <div className='card text-dark bg-light mb-3'>
+                <div className='card-modal-front'>
+                    <div className='card-header'>{data.subject}</div>
+                    <div className='card-body'>
+                        <div className='card-title'>Q.{data.index}</div>
+                        <div className='card-text'>{data.about}</div>
+                    </div>
+                    <div className='card-body'>
+                        <Form>
+                            { data.options.map((options) => 
+                                <Form.Check
+                                    key={`${options.id}`}
+                                    type='radio'
+                                    label={`${options.text}`}
+                                    value={`${options.id}`}
+                                    id={`${options.id}`}
+                                    name='options'
+                                    onChange={ handleChange }
+                                    checked={selectedOptionId === options.id}
+                                />
+                            )}
+                        </Form>
+                    </div>
+                    <div className='card-footer'>
+                        <Stack gap={2}>
+                            <Button className='w-100 btn-flip' variant="primary" onClick={ handleCardFlip }>Submit</Button>
+                            {/* <Button className='w-100' variant="primary">Skip</Button> */}
+                        </Stack>
+                    </div>
+                </div>
             </div>
-            <div className='card-modal-back'>
-                
+            <div className='card mb-3 card-flip'>
+                <div className='card-header'>{data.subject}</div>
+                <div className='card-body'>
+                    <div className='card-title fs-3'>Solution</div>
+                    <div className='card-text'>Your Answer :- <br /> <b>{selectedOptionId})</b></div>
+                    <div className='card-text'>Correct Answer :- <br /> <b>{data.answer_id}) {data.options.filter(obj => obj.id === data.answer_id)[0].text}</b></div>
+                    <div className='card-text'>{data.greeting}</div>
+                </div>
+                <Stack gap={2}>
+                    <Button className='w-100' variant="primary" onClick={ handleCardFlip }>Previous Question</Button>
+                    <Button className='w-100' variant="primary" onClick={ handleClick }>Next Question</Button>
+                </Stack>
             </div>
-        </Card>
+        </ReactCardFlip>
     )
 }
 

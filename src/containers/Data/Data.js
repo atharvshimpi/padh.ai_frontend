@@ -41,7 +41,7 @@ export const Data = [
                 },
                 {
                     "id": 3,
-                    "text": "Townsend Rollins"
+                    "text": "Roth Steele"
                 },
                 {
                     "id": 4,
@@ -49,7 +49,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Eve Huber! You have 7 unread messages.",
-            "favoriteFruit": "banana"
+            "answer_id": 4
         },
         {
             "_id": "623d55ce1c21ebb392cde107",
@@ -99,7 +99,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Roth Steele! You have 1 unread messages.",
-            "favoriteFruit": "banana"
+            "answer_id": 1
         },
         {
             "_id": "623d55cea8cd3d0ee84c7c8c",
@@ -149,7 +149,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Pope Torres! You have 5 unread messages.",
-            "favoriteFruit": "banana"
+            "answer_id": 3
         },
     ],
     // Chemistry
@@ -202,7 +202,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Alana Sweet! You have 3 unread messages.",
-            "favoriteFruit": "apple"
+            "answer_id": 4
         },
         {
             "_id": "623d7e7fafdc428f0698f60d",
@@ -252,7 +252,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Snider Rivers! You have 3 unread messages.",
-            "favoriteFruit": "banana"
+            "answer_id": 1
         },
         {
             "_id": "623d7de9e8e9de6c21f08ca6",
@@ -302,7 +302,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Livingston Gibbs! You have 3 unread messages.",
-            "favoriteFruit": "apple"
+            "answer_id": 3
         },
     ],
     // Math
@@ -355,7 +355,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Christina Alford! You have 2 unread messages.",
-            "favoriteFruit": "strawberry"
+            "answer_id": 2
         },
         {
             "_id": "623d7de91fb0943ae36cb71d",
@@ -405,7 +405,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Diane Cochran! You have 10 unread messages.",
-            "favoriteFruit": "strawberry"
+            "answer_id": 3
         },
         {
             "_id": "623d7de9cdb93ec9f6845dae",
@@ -455,7 +455,7 @@ export const Data = [
                 },
             ],
             "greeting": "Hello, Armstrong Garrett! You have 7 unread messages.",
-            "favoriteFruit": "strawberry"
+            "answer_id": 4
         },
     ],
 ]
