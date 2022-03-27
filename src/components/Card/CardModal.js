@@ -6,26 +6,21 @@ import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-const CardModal = ({ data, isFlipped, handleClick, handleCardFlip }) => {
-    const [selectedOptionId, setSelectedOptionId] = useState(1)
+const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptionId, handleChange }) => {
 
-    const handleChange = (e) => {
-        setSelectedOptionId(Number(e.target.value))
-    }
+    // Color change upon answering - ***NOT WORKING***
 
-    // Color change upon asnwering - ***NOT WORKING***
-
-    // useEffect(() => {
-    //     document.getElementById("btn-flip").addEventListener("click", () => {
-    //         if(data.answer_id === selectedOptionId) {
-    //             document.querySelector(".card-flip").classList.add("card-correct-answer")
-    //             document.querySelector(".card-flip").classList.remove("card-wrong-answer")
-    //         } else {
-    //             document.querySelector(".card-flip").classList.add("card-wrong-answer")
-    //             document.querySelector(".card-flip").classList.remove("card-correct-answer")    
-    //         }
-    //     })
-    // }, [selectedOptionId, data.answer_id])
+    useEffect(() => {
+        document.getElementById("btn-flip").addEventListener("click", () => {
+            if(selectedOptionId === data.answer_id) {
+                document.querySelector(".card-flip").classList.add("card-correct-answer")
+                document.querySelector(".card-flip").classList.remove("card-wrong-answer")
+            } else {
+                document.querySelector(".card-flip").classList.add("card-wrong-answer")
+                document.querySelector(".card-flip").classList.remove("card-correct-answer")    
+            }
+        })
+    }, [selectedOptionId, data.answer_id])
     
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
