@@ -7,23 +7,25 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 const CardModal = ({ data, isFlipped, handleClick, handleCardFlip }) => {
-    const [selectedOptionId, setSelectedOptionId] = useState(0)
+    const [selectedOptionId, setSelectedOptionId] = useState(1)
 
     const handleChange = (e) => {
         setSelectedOptionId(Number(e.target.value))
     }
 
-    useEffect(() => {
-        document.querySelector(".btn-flip").addEventListener("click", () => {
-            if(data.answer_id === selectedOptionId) {
-                document.querySelector(".card-flip").classList.add("card-correct-answer")
-                document.querySelector(".card-flip").classList.remove("card-wrong-answer")
-            } else {
-                document.querySelector(".card-flip").classList.add("card-wrong-answer")
-                document.querySelector(".card-flip").classList.remove("card-correct-answer")    
-            }
-        })
-    }, [selectedOptionId, data.answer_id])
+    // Color change upon asnwering - ***NOT WORKING***
+
+    // useEffect(() => {
+    //     document.getElementById("btn-flip").addEventListener("click", () => {
+    //         if(data.answer_id === selectedOptionId) {
+    //             document.querySelector(".card-flip").classList.add("card-correct-answer")
+    //             document.querySelector(".card-flip").classList.remove("card-wrong-answer")
+    //         } else {
+    //             document.querySelector(".card-flip").classList.add("card-wrong-answer")
+    //             document.querySelector(".card-flip").classList.remove("card-correct-answer")    
+    //         }
+    //     })
+    // }, [selectedOptionId, data.answer_id])
     
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
@@ -34,28 +36,28 @@ const CardModal = ({ data, isFlipped, handleClick, handleCardFlip }) => {
                         <div className='card-title'>Q.{data.index}</div>
                         <div className='card-text'>{data.about}</div>
                     </div>
-                    <div className='card-body'>
-                        <Form>
-                            { data.options.map((options) => 
-                                <Form.Check
-                                    key={`${options.id}`}
-                                    type='radio'
-                                    label={`${options.text}`}
-                                    value={`${options.id}`}
-                                    id={`${options.id}`}
-                                    name='options'
-                                    onChange={ handleChange }
-                                    checked={selectedOptionId === options.id}
-                                />
-                            )}
-                        </Form>
-                    </div>
-                    <div className='card-footer'>
-                        <Stack gap={2}>
-                            <Button className='w-100 btn-flip' variant="primary" onClick={ handleCardFlip }>Submit</Button>
-                            {/* <Button className='w-100' variant="primary">Skip</Button> */}
-                        </Stack>
-                    </div>
+                    <Form>
+                        <div className='card-body'>
+                                { data.options.map((options) => 
+                                    <Form.Check
+                                        key={`${options.id}`}
+                                        type='radio'
+                                        label={`${options.text}`}
+                                        value={`${options.id}`}
+                                        id={`${options.id}`}
+                                        name='options'
+                                        onChange={ handleChange }
+                                        checked={selectedOptionId === options.id}
+                                    />
+                                )}
+                        </div>
+                        <div className='card-footer'>
+                            <Stack gap={2}>
+                                <Button id="btn-flip" className='w-100' variant="primary" onClick={ handleCardFlip }>Submit</Button>
+                                {/* <Button className='w-100' variant="primary">Skip</Button> */}
+                            </Stack>
+                        </div>
+                    </Form>
                 </div>
             </div>
             <div className='card mb-3 card-flip'>
