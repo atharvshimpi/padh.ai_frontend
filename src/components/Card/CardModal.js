@@ -25,8 +25,8 @@ const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptio
                                         type='radio'
                                         label={options.text}
                                         value={options.id}
-                                        id={options.id}
-                                        name={data.subject}
+                                        id={`${data.subject}${data.index}${options.id}`}
+                                        name={`${data.subject}${data.index}`}
                                         onChange={ handleChange }
                                         checked={selectedOptionId === options.id}
                                     />
