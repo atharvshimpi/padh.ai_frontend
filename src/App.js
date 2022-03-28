@@ -7,6 +7,7 @@ import {
 
 import Home from './containers/Home/Home'
 import Login from './containers/Auth/Login'
+import NotFound from './components/Error/NotFound'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={ <Home /> } />
         <Route path='/login' element={ <Login /> } />
+        <Route path='*' element={ <NotFound /> } />
       </Routes>
     </Router>
   )
