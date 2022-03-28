@@ -46,14 +46,16 @@ const Card = () => {
     // subjectNum: { Physics: 1, Chemistry: 2, Math: 3 } 
     handleCardFlip(subjectNum)
 
-    (subjectNum === 1 ? 
-      (phyIndex + 1 < Data[0].length ? setPhyIndex(phyIndex + 1) : alert("Physics Questions are Over!"))
-      : 
-      (subjectNum === 2 ?
-        (chemIndex + 1 < Data[1].length ? setChemIndex(chemIndex + 1) : alert("Chemistry Questions are Over!"))
-        :
-        (mathIndex + 1 < Data[2].length ? setMathIndex(mathIndex + 1) : alert("Math Questions are Over!"))
-      ))
+    window.setTimeout(() => {
+      (subjectNum === 1 ? 
+        (phyIndex + 1 < Data[0].length ? setPhyIndex(phyIndex + 1) : alert("Physics Questions are Over!"))
+        : 
+        (subjectNum === 2 ?
+          (chemIndex + 1 < Data[1].length ? setChemIndex(chemIndex + 1) : alert("Chemistry Questions are Over!"))
+          :
+          (mathIndex + 1 < Data[2].length ? setMathIndex(mathIndex + 1) : alert("Math Questions are Over!"))
+        ))
+    }, 200)
   }
 
   return (
