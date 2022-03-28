@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ReactCardFlip from 'react-card-flip'
 
 import './card.css'
@@ -7,21 +7,6 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptionId, handleChange }) => {
-
-    // Color change upon answering - ***NOT WORKING***
-
-    useEffect(() => {
-        document.getElementById("btn-flip").addEventListener("click", () => {
-            if(selectedOptionId === data.answer_id) {
-                document.querySelector(".card-flip").classList.add("card-correct-answer")
-                document.querySelector(".card-flip").classList.remove("card-wrong-answer")
-            } else {
-                document.querySelector(".card-flip").classList.add("card-wrong-answer")
-                document.querySelector(".card-flip").classList.remove("card-correct-answer")    
-            }
-        })
-    }, [selectedOptionId, data.answer_id])
-    
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             <div className='card text-dark bg-light mb-3'>
@@ -55,13 +40,13 @@ const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptio
                     </Form>
                 </div>
             </div>
-            <div className='card mb-3 card-flip'>
+            <div className={`card mb-3 card-flip ${selectedOptionId && selectedOptionId === data.answer_id ? 'card-correct-answer' : 'card-wrong-answer'}`}>
                 <div className='card-header'>{data.subject}</div>
                 <div className='card-body'>
                     <div className='card-title fs-3'>Solution</div>
-                    <div className='card-text fs-5'>Your Answer :- <br /> <b>{selectedOptionId})</b></div>
+                    <div className='card-text fs-5'>Your Answer :- <br /> <b>{selectedOptionId + ')'}</b></div>
                     <br />
-                    <div className='card-text fs-5'>Correct Answer :- <br /> <b>{data.answer_id}) {data.options.filter(obj => obj.id === data.answer_id)[0].text}</b></div>
+                    <div className='card-text fs-5'>Correct Answer :- <br /> <b>{data.answer_id + ')'} {data.options.filter(obj => obj.id === data.answer_id)[0].text}</b></div>
                     <br />
                     <div className='card-text'>Explanation :- <br />{data.greeting}</div>
                 </div>
