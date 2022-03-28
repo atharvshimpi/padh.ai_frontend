@@ -19,6 +19,10 @@ const Card = () => {
   const [selectedChemOptionId, setSelectedChemOptionId] = useState(0)
   const [selectedMathOptionId, setSelectedMathOptionId] = useState(0)
 
+  // ***Subject Codes***
+  // subjectNum: { Physics: 1, Chemistry: 2, Math: 3 }
+
+  // To change the option selected
   const handleChange = (e, subjectNum) => {
     (subjectNum === 1 ? 
       setSelectedPhyOptionId(Number(e.target.value))
@@ -30,8 +34,9 @@ const Card = () => {
       ))
   }
 
+  // To flip the card
   const handleCardFlip = (subjectNum) => {
-    // subjectNum: { Physics: 1, Chemistry: 2, Math: 3 } 
+    
       (subjectNum === 1 ? 
         setPhyIsFlipped(!isPhyFlipped)
             : 
@@ -42,10 +47,25 @@ const Card = () => {
         ))
   }
 
-  const handleClick = (subjectNum) => {
-    // subjectNum: { Physics: 1, Chemistry: 2, Math: 3 } 
-    handleCardFlip(subjectNum)
+  // To reset the options after each question
+  const resetOptions = (subjectNum) => {
+    (subjectNum === 1 ? 
+      setSelectedPhyOptionId(0)
+          : 
+      (subjectNum === 2 ?
+        setSelectedChemOptionId(0)
+              :
+        setSelectedMathOptionId(0)
+      ))
+  }
 
+  // Or more precisely, handleSubmit
+  const handleClick = (subjectNum) => {
+    
+    // Flip the card to show the solution after submitting
+    handleCardFlip(subjectNum)
+    
+    // ***Jugaad*** - The answer/explanation to next question available after the card has flipped
     window.setTimeout(() => {
       (subjectNum === 1 ? 
         (phyIndex + 1 < Data[0].length ? setPhyIndex(phyIndex + 1) : alert("Physics Questions are Over!"))
@@ -55,6 +75,9 @@ const Card = () => {
           :
           (mathIndex + 1 < Data[2].length ? setMathIndex(mathIndex + 1) : alert("Math Questions are Over!"))
         ))
+      
+      // Call, to reset the options after each question
+      resetOptions(subjectNum)
     }, 200)
   }
 

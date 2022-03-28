@@ -20,6 +20,7 @@ const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptio
                         <div className='card-body'>
                                 { data.options.map((options) => 
                                     <Form.Check
+                                        required
                                         key={options.id}
                                         type='radio'
                                         label={options.text}
@@ -33,14 +34,16 @@ const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptio
                         </div>
                         <div className='card-footer'>
                             <Stack gap={2}>
-                                <Button id="btn-flip" className='w-100' variant="primary" onClick={ handleCardFlip }>Submit</Button>
-                                {/* <Button className='w-100' variant="primary">Skip</Button> */}
+                                {/* Disabled - to prevent submitting empty value */}
+                                <Button id="btn-flip" className='w-100' variant="primary" disabled={!selectedOptionId} onClick={ handleCardFlip }>Submit</Button>
                             </Stack>
                         </div>
                     </Form>
                 </div>
             </div>
-            <div className={`card mb-3 card-flip ${selectedOptionId && selectedOptionId === data.answer_id ? 'card-correct-answer' : 'card-wrong-answer'}`}>
+
+            {/* To change the style according to the option selected */}
+            <div className={`card mb-3 card-flip ${selectedOptionId && (selectedOptionId === data.answer_id ? 'card-correct-answer' : 'card-wrong-answer')}`}>
                 <div className='card-header'>{data.subject}</div>
                 <div className='card-body'>
                     <div className='card-title fs-3'>Solution</div>
