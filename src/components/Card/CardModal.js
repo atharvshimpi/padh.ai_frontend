@@ -47,9 +47,9 @@ const CardModal = ({ data, isFlipped, handleClick, handleCardFlip, selectedOptio
                 <div className='card-header'>{data.subject}</div>
                 <div className='card-body'>
                     <div className='card-title fs-3'>Solution</div>
-                    <div className='card-text fs-5'>Your Answer :- <br /> <b>{selectedOptionId + ')'}</b></div>
+                    <div className='card-text fs-5'>Your Answer :- <br /> <b>{selectedOptionId + ') ' + (selectedOptionId && data.options.filter(obj => obj.id === selectedOptionId)[0].text) } </b></div>
                     <br />
-                    <div className='card-text fs-5'>Correct Answer :- <br /> <b>{data.answer_id + ')'} {data.options.filter(obj => obj.id === data.answer_id)[0].text}</b></div>
+                    <div className='card-text fs-5'>Correct Answer :- <br /> <b>{data.answer_id + ') ' + data.options.filter(obj => obj.id === data.answer_id)[0].text}</b></div>
                     <br />
                     <div className='card-text'>Explanation :- <br />{data.greeting}</div>
                 </div>
