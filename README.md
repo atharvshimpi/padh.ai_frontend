@@ -8,4 +8,4 @@ Run ``` npm start ``` in the given repository
 
 ## Site Link
 
->[Padh.ai || Jab padhega AI, tabhi toh badhega AI](https://padhai.netlify.app)
+>[Padh.ai](https://padhai.netlify.app)

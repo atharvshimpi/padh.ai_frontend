@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import './navbar.css'
 import Navbar from 'react-bootstrap/Navbar'
@@ -8,10 +9,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button'
 
 const NavbarHome = () => {
+    const navigate = useNavigate()
+
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">Padh.ai</Navbar.Brand>
+                <Navbar.Brand href="/">Padh.ai</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -26,7 +29,7 @@ const NavbarHome = () => {
                         </NavDropdown>
                     </Nav>
 
-                    <Button variant="outline-success">
+                    <Button variant="outline-success" onClick={ () => navigate('/login') }>
                         Login
                     </Button>
                 </Navbar.Collapse>
